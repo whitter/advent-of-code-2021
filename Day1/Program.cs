@@ -20,8 +20,13 @@ namespace Day1
             var input = content.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => Convert.ToInt32(x));
             
-            Console.WriteLine($"Task 1: {input.Pairwise((prev, current) => current > prev).Count(x => x)}");
-            Console.WriteLine($"Task 2: {input.Window(3).Select(x => x.Sum()).Pairwise((prev, current) => current > prev).Count(x => x)}");
+            Console.WriteLine($"Task 1: {CountIncreases(input)}");
+            Console.WriteLine($"Task 2: {CountIncreases(input.Window(3).Select(x => x.Sum()))}");
+        }
+
+        private static int CountIncreases(IEnumerable<int> items)
+        {
+            return items.Pairwise((prev, current) => current > prev).Count(x => x);
         }
     }
 }
