@@ -1,7 +1,8 @@
+using AoC.Day1;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace AdventOfCode2021.Tests
+namespace AoC.Tests
 {
     public class Day1Tests
     {
@@ -10,7 +11,7 @@ namespace AdventOfCode2021.Tests
         [Test]
         public void Task1()
         {
-            var result = Day1.Task1.Process(_input);
+            var result = Program.Task1(_input);
 
             Assert.AreEqual(result, 7);
         }
@@ -18,7 +19,7 @@ namespace AdventOfCode2021.Tests
         [Test]
         public void Task2()
         {
-            var result = Day1.Task2.Process(_input);
+            var result = Program.Task2(_input);
 
             Assert.AreEqual(result, 5);
         }

@@ -1,41 +1,29 @@
-﻿using MoreLinq;
+﻿using AoC.Common;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Day1
+namespace AoC.Day1
 {
-    class Program
+    public class Program : BaseProgram
     {
         static void Main(string[] args)
         {
-            string content;
-
-            using(var reader = new StreamReader("input.txt"))
-            {
-                content = reader.ReadToEnd();
-            }
-
-            var input = content.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+            var input = Load()
                 .Select(x => Convert.ToInt32(x));
             
-            Console.WriteLine($"Task 1: {Task1.Process(input)}");
-            Console.WriteLine($"Task 2: {Task2.Process(input)}");
-        }        
-    }
+            Console.WriteLine($"Task 1: {Task1(input)}");
+            Console.WriteLine($"Task 2: {Task2(input)}");
+        }
 
-    public static class Task1
-    {
-        public static int Process(IEnumerable<int> input)
+        public static int Task1(IEnumerable<int> input)
         {
             return input.CountIncreases();
         }
-    }
 
-    public static class Task2
-    {
-        public static int Process(IEnumerable<int> input)
+        public static int Task2(IEnumerable<int> input)
         {
             var windowed = input
                 .Window(3)
