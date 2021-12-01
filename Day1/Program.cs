@@ -20,8 +20,8 @@ namespace Day1
             var input = content.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => Convert.ToInt32(x));
             
-            Console.WriteLine($"Task 1: {input.Pairwise((prev, current) => current > prev).Where(x => x).Count()}");
-            Console.WriteLine($"Task 2: {input.Window(3).Select(x => x.Sum()).Pairwise((prev, current) => current > prev).Where(x => x).Count()}");
+            Console.WriteLine($"Task 1: {input.Pairwise((prev, current) => current > prev).Count(x => x)}");
+            Console.WriteLine($"Task 2: {input.Window(3).Select(x => x.Sum()).Pairwise((prev, current) => current > prev).Count(x => x)}");
         }
     }
 }
