@@ -20,13 +20,38 @@ namespace Day1
             var input = content.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => Convert.ToInt32(x));
             
-            Console.WriteLine($"Task 1: {CountIncreases(input)}");
-            Console.WriteLine($"Task 2: {CountIncreases(input.Window(3).Select(x => x.Sum()))}");
-        }
+            Console.WriteLine($"Task 1: {Task1.Process(input)}");
+            Console.WriteLine($"Task 2: {Task2.Process(input)}");
+        }        
+    }
 
-        private static int CountIncreases(IEnumerable<int> items)
+    public static class Task1
+    {
+        public static int Process(IEnumerable<int> input)
         {
-            return items.Pairwise((prev, current) => current > prev).Count(x => x);
+            return input.CountIncreases();
+        }
+    }
+
+    public static class Task2
+    {
+        public static int Process(IEnumerable<int> input)
+        {
+            var windowed = input
+                .Window(3)
+                .Select(x => x.Sum());
+
+            return windowed.CountIncreases();
+        }
+    }
+
+    public static class Extensions
+    {
+        public static int CountIncreases(this IEnumerable<int> items)
+        {
+            return items
+                .Pairwise((prev, current) => current > prev)
+                .Count(x => x);
         }
     }
 }
