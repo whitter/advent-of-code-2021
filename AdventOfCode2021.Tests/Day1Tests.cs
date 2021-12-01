@@ -5,17 +5,7 @@ namespace AdventOfCode2021.Tests
 {
     public class Day1Tests
     {
-        private readonly IEnumerable<int> _input = new int[] { 
-            199,
-            200,
-            208,
-            210,
-            200,
-            207,
-            240,
-            269,
-            260,
-            263 };
+        private readonly IEnumerable<int> _input = new int[] { 199, 200, 208, 210, 200, 207, 240, 269, 260, 263 };
 
         [Test]
         public void Task1()
