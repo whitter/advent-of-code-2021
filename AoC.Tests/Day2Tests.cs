@@ -19,7 +19,7 @@ namespace AoC.Tests
         [Test]
         public void Task1_X()
         {
-            (int x, int y, int d) = Program.CalcPosition(_input);
+            (int x, _, _) = Program.CalcPosition(_input);
 
             Assert.AreEqual(x, 15);
         }
@@ -27,7 +27,7 @@ namespace AoC.Tests
         [Test]
         public void Task1_D()
         {
-            (int x, int y, int d) = Program.CalcPosition(_input);
+            (_, _, int d) = Program.CalcPosition(_input);
 
             Assert.AreEqual(d, 10);
         }
@@ -43,7 +43,7 @@ namespace AoC.Tests
         [Test]
         public void Task2_Y()
         {
-            (int x, int y, int d) = Program.CalcPosition(_input);
+            (_, int y, _) = Program.CalcPosition(_input);
 
             Assert.AreEqual(y, 60);
         }
