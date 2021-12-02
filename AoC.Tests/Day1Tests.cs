@@ -9,7 +9,7 @@ namespace AoC.Tests
         private readonly IEnumerable<int> _input = new int[] { 199, 200, 208, 210, 200, 207, 240, 269, 260, 263 };
 
         [Test]
-        public void Task1()
+        public void Task1_Result()
         {
             var result = Program.Task1(_input);
 
@@ -17,7 +17,7 @@ namespace AoC.Tests
         }
 
         [Test]
-        public void Task2()
+        public void Task2_Result()
         {
             var result = Program.Task2(_input);
 

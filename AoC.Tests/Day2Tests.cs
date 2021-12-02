@@ -33,7 +33,7 @@ namespace AoC.Tests
         }
 
         [Test]
-        public void Task2()
+        public void Task2_Result()
         {
             var result = Program.Task2(_input);
 
