@@ -24,14 +24,14 @@ namespace AoC.Day2
 
         public static int Task1(IEnumerable<(string, int)> input)
         {
-            (int x, int y, int d) = CalcPosition(input);
+            (int x, _, int d) = CalcPosition(input);
 
             return x * d;
         }
 
         public static int Task2(IEnumerable<(string, int)> input)
         {
-            (int x, int y, int d) = CalcPosition(input);
+            (int x, int y, _) = CalcPosition(input);
 
             return x * y;
         }
