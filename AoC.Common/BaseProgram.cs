@@ -8,14 +8,7 @@ namespace AoC.Common
     {
         protected static IEnumerable<string> Load()
         {
-            string content;
-
-            using (var reader = new StreamReader("input.txt"))
-            {
-                content = reader.ReadToEnd();
-            }
-
-            return content.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            return File.ReadAllLines("input.txt");
         }
     }
 }

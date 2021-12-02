@@ -6,14 +6,30 @@ namespace AoC.Tests
 {
     public class Day2Tests
     {
-        private readonly IEnumerable<int> _input = new int[] { 199, 200, 208, 210, 200, 207, 240, 269, 260, 263 };
+        private readonly IEnumerable<(string, int)> _input = new (string, int)[] { ("forward", 5), ("down", 5), ("forward", 8), ("up", 3), ("down", 8), ("forward", 2) };
 
         [Test]
-        public void Task1()
+        public void Task1_Result()
         {
             var result = Program.Task1(_input);
 
-            Assert.AreEqual(result, 7);
+            Assert.AreEqual(result, 150);
+        }
+
+        [Test]
+        public void Task1_X()
+        {
+            (int x, int y, int d) = Program.CalcPosition(_input);
+
+            Assert.AreEqual(x, 15);
+        }
+
+        [Test]
+        public void Task1_D()
+        {
+            (int x, int y, int d) = Program.CalcPosition(_input);
+
+            Assert.AreEqual(d, 10);
         }
 
         [Test]
@@ -21,7 +37,15 @@ namespace AoC.Tests
         {
             var result = Program.Task2(_input);
 
-            Assert.AreEqual(result, 5);
+            Assert.AreEqual(result, 900);
+        }
+
+        [Test]
+        public void Task2_Y()
+        {
+            (int x, int y, int d) = Program.CalcPosition(_input);
+
+            Assert.AreEqual(y, 60);
         }
     }
 }

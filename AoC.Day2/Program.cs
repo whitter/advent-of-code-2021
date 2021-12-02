@@ -12,20 +12,52 @@ namespace AoC.Day2
         static void Main(string[] args)
         {
             var input = Load()
-                .Select(x => Convert.ToInt32(x));
+                .Select(x => {
+                    var line = x.Split(' ');
+
+                    return (line[0], Convert.ToInt32(line[1]));
+                });
             
             Console.WriteLine($"Task 1: {Task1(input)}");
             Console.WriteLine($"Task 2: {Task2(input)}");
         }
 
-        public static int Task1(IEnumerable<int> input)
+        public static int Task1(IEnumerable<(string, int)> input)
         {
-            return 0;
+            (int x, int y, int d) = CalcPosition(input);
+
+            return x * d;
         }
 
-        public static int Task2(IEnumerable<int> input)
+        public static int Task2(IEnumerable<(string, int)> input)
         {
-            return 0;
+            (int x, int y, int d) = CalcPosition(input);
+
+            return x * y;
+        }
+
+        public static (int, int, int) CalcPosition(IEnumerable<(string, int)> input)
+        {
+            (int X, int Y, int D) position = (0, 0, 0);
+
+            foreach((string direction, int value) in input)
+            {
+                switch(direction)
+                {
+                    case "forward":
+                        position.X += value;
+                        position.Y += position.D * value;
+                        break;
+                    case "up":
+                        position.D -= value;
+                        break;
+                    case "down":
+                        position.D += value;
+                        break;
+                }
+            }
+
+            return position;
         }
     }
 }
