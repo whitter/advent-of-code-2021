@@ -13,7 +13,7 @@ namespace AoC.Tests
         {
             var result = Program.Task1(_input);
 
-            Assert.AreEqual(result, 7);
+            Assert.AreEqual(7, result);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace AoC.Tests
         {
             var result = Program.Task2(_input);
 
-            Assert.AreEqual(result, 5);
+            Assert.AreEqual(5, result);
         }
     }
 }

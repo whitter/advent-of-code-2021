@@ -13,7 +13,7 @@ namespace AoC.Tests
         {
             var result = Program.Task1(_input);
 
-            Assert.AreEqual(result, 150);
+            Assert.AreEqual(150, result);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace AoC.Tests
         {
             (int x, _, _) = Program.CalcPosition(_input);
 
-            Assert.AreEqual(x, 15);
+            Assert.AreEqual(15, x);
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace AoC.Tests
         {
             (_, _, int d) = Program.CalcPosition(_input);
 
-            Assert.AreEqual(d, 10);
+            Assert.AreEqual(10, d);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace AoC.Tests
         {
             var result = Program.Task2(_input);
 
-            Assert.AreEqual(result, 900);
+            Assert.AreEqual(900, result);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace AoC.Tests
         {
             (_, int y, _) = Program.CalcPosition(_input);
 
-            Assert.AreEqual(y, 60);
+            Assert.AreEqual(60, y);
         }
     }
 }
