@@ -7,19 +7,19 @@ namespace AoC.Tests
 {
     public class Day3Tests
     {
-        private readonly IEnumerable<int> _input = new int[] { 
-            Convert.ToInt32("00100", 2),
-            Convert.ToInt32("11110", 2),
-            Convert.ToInt32("10110", 2),
-            Convert.ToInt32("10111", 2),
-            Convert.ToInt32("10101", 2),
-            Convert.ToInt32("01111", 2),
-            Convert.ToInt32("00111", 2),
-            Convert.ToInt32("11100", 2),
-            Convert.ToInt32("10000", 2),
-            Convert.ToInt32("11001", 2),
-            Convert.ToInt32("00010", 2),
-            Convert.ToInt32("01010", 2)
+        private readonly IEnumerable<uint> _input = new uint[] { 
+            Convert.ToUInt32("00100", 2),
+            Convert.ToUInt32("11110", 2),
+            Convert.ToUInt32("10110", 2),
+            Convert.ToUInt32("10111", 2),
+            Convert.ToUInt32("10101", 2),
+            Convert.ToUInt32("01111", 2),
+            Convert.ToUInt32("00111", 2),
+            Convert.ToUInt32("11100", 2),
+            Convert.ToUInt32("10000", 2),
+            Convert.ToUInt32("11001", 2),
+            Convert.ToUInt32("00010", 2),
+            Convert.ToUInt32("01010", 2)
         };
 
         [Test]

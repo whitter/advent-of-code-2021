@@ -12,61 +12,55 @@ namespace AoC.Day3
         static void Main(string[] args)
         {
             var input = Load()
-                .Select(x => Convert.ToInt32(x, 2));
+                .Select(x => Convert.ToUInt32(x, 2));
             
             Console.WriteLine($"Task 1: {Task1(input, 12)}");
             Console.WriteLine($"Task 2: {Task2(input, 12)}");
         }
 
-        public static int Task1(IEnumerable<int> input, int bitLength)
+        public static uint Task1(IEnumerable<uint> input, int bitLength)
         {
             var most = input.MostBits(bitLength);
 
             return most * most.InvertBits(bitLength);
         }
 
-        public static int Task2(IEnumerable<int> input, int bitLength)
+        public static uint Task2(IEnumerable<uint> input, int bitLength)
         {
-            return input.ToRating(bitLength, false) * input.ToRating(bitLength, true);
+            return input.ToRating(bitLength) * input.ToRating(bitLength, true);
         }        
     }
     public static class Extensions
     {
-        public static int ToRating(this IEnumerable<int> input, int bitLength, bool invert)
+        public static uint ToRating(this IEnumerable<uint> input, int bitLength, bool invert = false)
         {
-            IEnumerable<int> rating = input.ToList();
+            IEnumerable<uint> rating = input.ToList();
 
-            for (var i = 1 << bitLength - 1; i >= 1; i >>= 1)
+            for (var i = 1u << bitLength - 1; i >= 1; i >>= 1)
             {
                 if (rating.Count() == 1) break;
 
-                var flag = rating.GetCommonBit(i, invert);
+                var flag = rating.GetCommonBit(i);
+                var mask = invert ? flag.InvertBits(bitLength) & i : flag;
 
-                rating = rating.Where(x => (x & i) == flag).ToList();
+                rating = rating.Where(x => (x & i) == mask).ToList();
             }
 
             return rating.First();
         }
 
-        public static int GetCommonBit(this IEnumerable<int> input, int bit, bool invert = false)
+        public static uint GetCommonBit(this IEnumerable<uint> input, uint bit)
         {
             var agg = input.Aggregate(0, (count, n) => count + ((n & bit) == bit ? 1 : 0));
 
-            if (invert)
-            {
-                return Convert.ToInt32(!(agg >= input.Count() / 2d)) * bit;
-            }
-            else
-            {
-                return Convert.ToInt32(agg >= input.Count() / 2d) * bit;
-            }
+            return agg >= input.Count() / 2d ? bit : 0;
         }
 
-        public static int MostBits(this IEnumerable<int> input, int bitLength)
+        public static uint MostBits(this IEnumerable<uint> input, int bitLength)
         {
-            int count = 0;
+            uint count = 0;
 
-            for (var i = 1 << bitLength - 1; i >= 1; i >>= 1)
+            for (var i = 1u << bitLength - 1; i >= 1; i >>= 1)
             {
                 count += input.GetCommonBit(i);
             }
@@ -74,9 +68,9 @@ namespace AoC.Day3
             return count;
         }
 
-        public static int InvertBits(this int input, int bitLength)
+        public static uint InvertBits(this uint input, int bitLength)
         {
-            return (1 << bitLength) - input - 1;
+            return (1u << bitLength) - input - 1;
         }
     }
 }
