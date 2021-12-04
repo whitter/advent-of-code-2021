@@ -12,6 +12,7 @@ namespace AoC.Day2
         static void Main(string[] args)
         {
             var input = Load()
+                .SplitByNewline()
                 .Select(x => {
                     var line = x.Split(' ');
 

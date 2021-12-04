@@ -12,6 +12,7 @@ namespace AoC.Day3
         static void Main(string[] args)
         {
             var input = Load()
+                .SplitByNewline()
                 .Select(x => Convert.ToUInt32(x, 2));
             
             Console.WriteLine($"Task 1: {Task1(input, 12)}");
