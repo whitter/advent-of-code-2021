@@ -122,19 +122,19 @@ namespace AoC.Day4
 
     public static class Extensions
     {
-        public static int[] ToIntArray(this string str)
+        public static int[] ToIntArray(this string input)
         {
-            return str
+            return input
                 .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => Convert.ToInt32(x))
                 .ToArray();
         }
 
-        public static T[,] To2DArray<T>(this T[][] src)
+        public static T[,] To2DArray<T>(this T[][] array)
         {
-            int row = src.Length;
+            int row = array.Length;
 
-            int column = src
+            int column = array
                 .GroupBy(row => row.Length)
                 .Single()
                 .Key;
@@ -145,7 +145,7 @@ namespace AoC.Day4
             {
                 for (int c = 0; c < column; c++)
                 {
-                    result[r, c] = src[r][c];
+                    result[r, c] = array[r][c];
                 }
             }
 
