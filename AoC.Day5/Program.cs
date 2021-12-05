@@ -79,8 +79,4 @@ namespace AoC.Day5
 
         public bool IsDiagonal => p1.X != p2.X && p1.Y != p2.Y;
     }
-
-    public static class Extensions
-    {
-    }
 }
