@@ -28,5 +28,13 @@ namespace AoC.Common
                 .Split(new[] { "\r\r", "\n\n", "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries)
                 .ToArray();
         }
+
+        public static int[] ToIntArray(this string input)
+        {
+            return input
+                .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => Convert.ToInt32(x))
+                .ToArray();
+        }
     }
 }

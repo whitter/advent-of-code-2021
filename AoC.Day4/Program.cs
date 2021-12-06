@@ -121,15 +121,7 @@ namespace AoC.Day4
     }
 
     public static class Extensions
-    {
-        public static int[] ToIntArray(this string input)
-        {
-            return input
-                .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => Convert.ToInt32(x))
-                .ToArray();
-        }
-
+    {        
         public static T[,] To2DArray<T>(this T[][] array)
         {
             int row = array.Length;

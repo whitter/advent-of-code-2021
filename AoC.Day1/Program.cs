@@ -12,6 +12,7 @@ namespace AoC.Day1
         static void Main(string[] args)
         {
             var input = Load()
+                .SplitByNewline()
                 .Select(x => Convert.ToInt32(x));
             
             Console.WriteLine($"Task 1: {Task1(input)}");
