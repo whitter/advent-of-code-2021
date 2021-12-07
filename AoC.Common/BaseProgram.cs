@@ -29,11 +29,11 @@ namespace AoC.Common
                 .ToArray();
         }
 
-        public static int[] ToIntArray(this string input)
+        public static T[] ToArray<T>(this string value)
         {
-            return input
+            return value
                 .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => Convert.ToInt32(x))
+                .Select(x => (T)Convert.ChangeType(x, typeof(T)))
                 .ToArray();
         }
     }

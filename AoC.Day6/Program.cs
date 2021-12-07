@@ -14,7 +14,7 @@ namespace AoC.Day6
         static void Main(string[] args)
         {
             var input = Load()
-               .ToIntArray()
+               .ToArray<int>()
                .ToDays();
 
             Console.WriteLine($"Task 1: {Task1(input)}");

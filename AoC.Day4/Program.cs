@@ -14,7 +14,7 @@ namespace AoC.Day4
             var input = Load()
                 .SplitByBlankLine();
 
-            var balls = input[0].ToIntArray();
+            var balls = input[0].ToArray<int>();
 
             var cards = input[1..]
                 .Select(Card.Parse)
