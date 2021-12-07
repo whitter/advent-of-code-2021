@@ -16,8 +16,7 @@ namespace AoC.Day7
         static void Main(string[] args)
         {
             var input = Load()
-               .ToArray<double>()
-               .ToArray();
+               .ToArray<double>();
 
             Console.WriteLine($"Task 1: {Task1(input)}");
             Console.WriteLine($"Task 2: {Task2(input)}");
