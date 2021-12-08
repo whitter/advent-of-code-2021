@@ -123,14 +123,14 @@ namespace AoC.Day8
 
         private static int ToBits(this string pattern)
         {
-            var bits = new StringBuilder("0000000");
+            var bits = 0;
 
             foreach (var c in pattern)
             {
-                bits[c - 'a'] = '1';
+                bits |= 1 << c - 'a';
             }
 
-            return Convert.ToInt32(bits.ToString(), 2);
+            return bits;
         }
     }
 }
