@@ -41,12 +41,12 @@ namespace AoC.Day8
 
             var _input = input
                 .ToArray<string>('|')
-                .Select(x => x.ToArray<string>(' ').Select(p => (p, p.ToBits())).ToArray())
+                .Select(x => x.ToArray<string>(' ').Select(p => (p.Length, p.ToBits())).ToArray())
                 .ToArray();
 
-            foreach ((string pattern, int bits) in _input[0])
+            foreach ((int length, int bits) in _input[0])
             {
-                switch(pattern.Length)
+                switch(length)
                 {
                     case 2:
                         set(bits, 1);
@@ -63,9 +63,9 @@ namespace AoC.Day8
                 }
             }
 
-            foreach ((string pattern, int bits) in _input[0])
+            foreach ((int length, int bits) in _input[0])
             {
-                switch (pattern.Length)
+                switch (length)
                 {
                     case 5:
                         if ((bits | patterns[4]) == patterns[8])
