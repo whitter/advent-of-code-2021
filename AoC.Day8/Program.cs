@@ -68,13 +68,13 @@ namespace AoC.Day8
                 switch (pattern.Length)
                 {
                     case 5:
-                        if ((bits & patterns[1]) == patterns[1])
-                        {
-                            set(bits, 3);
-                        }
-                        else if((bits | patterns[4]) == patterns[8])
+                        if ((bits | patterns[4]) == patterns[8])
                         {
                             set(bits, 2);
+                        }
+                        else if ((bits & patterns[1]) == patterns[1])
+                        {
+                            set(bits, 3);
                         }
                         else
                         {
