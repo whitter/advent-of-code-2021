@@ -98,7 +98,7 @@ namespace AoC.Day8
                 }
             }
 
-            int nDigits = 0;
+            int count = 0;
             int number = 0;
 
             foreach((_, int bits) in _input[1])
@@ -113,12 +113,12 @@ namespace AoC.Day8
                     case 4:
                     case 7:
                     case 8:
-                        nDigits++;
+                        count++;
                         break;
                 }
             }
 
-            return (nDigits, number);
+            return (count, number);
         }
 
         private static int ToBits(this string pattern)
