@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AoC.Common\AoC.Common.csproj" />
     <ProjectReference Include="..\AoC.Day1\AoC.Day1.csproj" />
     <ProjectReference Include="..\AoC.Day2\AoC.Day2.csproj" />
     <ProjectReference Include="..\AoC.Day3\AoC.Day3.csproj" />
@@ -20,6 +21,7 @@
     <ProjectReference Include="..\AoC.Day5\AoC.Day5.csproj" />
     <ProjectReference Include="..\AoC.Day6\AoC.Day6.csproj" />
     <ProjectReference Include="..\AoC.Day7\AoC.Day7.csproj" />
+    <ProjectReference Include="..\AoC.Day9\AoC.Day9.csproj" />
   </ItemGroup>
 
 </Project>
