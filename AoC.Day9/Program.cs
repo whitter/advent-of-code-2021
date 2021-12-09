@@ -17,7 +17,7 @@ namespace AoC.Day9
         {
             var input = Load()
                 .SplitByNewline()
-                .Select(x => x.ToArray<int>())
+                .Select(x => x.ToArray<int>(null))
                 .ToArray()
                 .To2DArray();
 
@@ -25,11 +25,11 @@ namespace AoC.Day9
             Console.WriteLine($"Task 2: {Task2(input)}");
         }
 
-        public static long Task1(int[,] input)
+        public static int Task1(int[,] input)
         {
             var lowest = input
                 .ToLowest()
-                .Aggregate(0L, (count, position) => count += input[position.Item1, position.Item2] + 1);
+                .Aggregate(0, (count, position) => count += input[position.Item1, position.Item2] + 1);
 
             return lowest;
         }
@@ -50,12 +50,14 @@ namespace AoC.Day9
                 {
                     var neighbours = array.Neighbours(y, x);
 
-                    if(neighbours.All(x => x > array[y,x]))
+                    if(neighbours.All(p => p > array[y,x]))
                     {
                         yield return (y, x);
                     }
                 }
             }
+
+            yield break;
         }
 
         public static IEnumerable<T> Neighbours<T>(this T[,] array, int y, int x)
@@ -66,11 +68,13 @@ namespace AoC.Day9
             {
                 if((y + dy < 0 || y + dy > array.GetLength(0) - 1) || (x + dx < 0 || x + dx > array.GetLength(1) - 1))
                 {
-                    yield break;
+                    continue;
                 }
 
                 yield return array[y + dy, x + dx];
             }
+
+            yield break;
         }
     }
 }

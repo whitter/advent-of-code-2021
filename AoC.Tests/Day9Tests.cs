@@ -10,11 +10,11 @@ namespace AoC.Tests
     public class Day9Tests
     {
         private readonly int[,] _caves = @"2199943210
-            3987894921
-            9856789892
-            8767896789
-            9899965678".SplitByNewline()
-            .Select(x => x.Trim().Select(c => Convert.ToInt32(c)).ToArray())
+3987894921
+9856789892
+8767896789
+9899965678".SplitByNewline()
+            .Select(x => x.ToArray<int>(null))
             .ToArray()
             .To2DArray();
 
@@ -31,7 +31,7 @@ namespace AoC.Tests
         {
             var result = Program.Task2(_caves);
 
-            Assert.AreEqual(168, result);
+            Assert.AreEqual(1134, result);
         }
     }
 }
