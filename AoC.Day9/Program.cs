@@ -17,7 +17,7 @@ namespace AoC.Day9
         {
             var input = Load()
                 .SplitByNewline()
-                .Select(x => x.ToArray<int>(null))
+                .Select(x => x.Select(c=> c - '0').ToArray())
                 .ToArray()
                 .To2DArray();
 
@@ -29,14 +29,22 @@ namespace AoC.Day9
         {
             var lowest = input
                 .ToLowest()
-                .Aggregate(0, (count, position) => count += input[position.Item1, position.Item2] + 1);
+                .Aggregate(0, (int count, (int y, int x)position) => count += input[position.y, position.x] + 1);
 
             return lowest;
         }
 
         public static int Task2(int[,] input)
         {
-            return 0;
+            var basins = input
+                .ToLowest()
+                .Select(x => x.Basin(input));
+            
+            return basins
+                .Select(x => x.Count())
+                .OrderByDescending(x => x)
+                .Take(3)
+                .Aggregate(1, (count, basin) => count *= basin);
         }
     }    
 
@@ -50,7 +58,7 @@ namespace AoC.Day9
                 {
                     var neighbours = array.Neighbours(y, x);
 
-                    if(neighbours.All(p => p > array[y,x]))
+                    if(neighbours.All(((int y, int x)n) => array[n.y, n.x] > array[y,x]))
                     {
                         yield return (y, x);
                     }
@@ -60,9 +68,9 @@ namespace AoC.Day9
             yield break;
         }
 
-        public static IEnumerable<T> Neighbours<T>(this T[,] array, int y, int x)
+        public static IEnumerable<(int, int)> Neighbours<T>(this T[,] array, int y, int x)
         {
-            var deltas = new (int, int)[] { (-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1) };
+            var deltas = new (int, int)[] { (-1, 0), (1, 0), (0, -1), (0, 1) };
 
             foreach((int dy, int dx) in deltas)
             {
@@ -71,10 +79,41 @@ namespace AoC.Day9
                     continue;
                 }
 
-                yield return array[y + dy, x + dx];
+                yield return (y + dy, x + dx);
             }
 
             yield break;
+        }
+
+        public static IEnumerable<(int, int)> Basin(this (int, int) point, int[,] array)
+        {
+            var visited = new HashSet<(int, int)>();
+            var queue = new Queue<(int, int)>();
+
+            queue.Enqueue(point);
+
+            while (queue.Count > 0)
+            {
+                (int y, int x) c = queue.Dequeue();
+
+                if (visited.Contains(c))
+                {
+                    continue;
+                }
+
+                visited.Add(c);
+
+                foreach ((int y, int x) n in array.Neighbours(c.y, c.x))
+                {
+                    if (visited.Contains(n))
+                        continue;
+
+                    if (array[n.y, n.x] < 9)
+                        queue.Enqueue(n);
+                }
+            }
+
+            return visited;
         }
     }
 }

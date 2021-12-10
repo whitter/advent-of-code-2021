@@ -14,7 +14,7 @@ namespace AoC.Tests
 9856789892
 8767896789
 9899965678".SplitByNewline()
-            .Select(x => x.ToArray<int>(null))
+            .Select(x => x.Select(c => c - '0').ToArray())
             .ToArray()
             .To2DArray();
 

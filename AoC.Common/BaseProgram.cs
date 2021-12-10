@@ -29,17 +29,10 @@ namespace AoC.Common
                 .ToArray();
         }
 
-        public static T[] ToArray<T>(this string value, char? separator = ',')
+        public static T[] ToArray<T>(this string value, char separator = ',')
         {
-            if(separator == null)
-            {
-                return value
-                    .Select(x => (T)Convert.ChangeType(x.ToString(), typeof(T)))
-                    .ToArray();
-            }
-
             return value
-                .Split(new char[] { separator.Value }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(new char[] { separator }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => (T)Convert.ChangeType(x, typeof(T)))
                 .ToArray();
         }
