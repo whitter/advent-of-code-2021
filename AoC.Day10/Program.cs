@@ -47,7 +47,7 @@ namespace AoC.Day10
 
     public static class Extensions
     {
-        public static Dictionary<char, (char open, long score)> corrupted = new Dictionary<char, (char, long)>
+        public static Dictionary<char, (char open, int score)> corrupted = new Dictionary<char, (char, int)>
         {
             { ')', ('(' , 3) },
             { ']', ('[' , 57) },
@@ -55,7 +55,7 @@ namespace AoC.Day10
             { '>', ('<' , 25137) }
         };
 
-        public static Dictionary<char, long> incomplete = new Dictionary<char, long>
+        public static Dictionary<char, int> incomplete = new Dictionary<char, int>
         {
             { '(' , 1 },
             { '[' , 2 },

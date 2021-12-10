@@ -25,7 +25,7 @@ namespace AoC.Tests
         {
             var result = Program.Task1(_lines);
 
-            Assert.AreEqual(26397, result);
+            Assert.AreEqual(26397d, result);
         }
 
         [Test]
