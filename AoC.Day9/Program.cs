@@ -92,10 +92,8 @@ namespace AoC.Day9
 
             queue.Enqueue(point);
 
-            while (queue.Count > 0)
+            while (queue.TryDequeue(out (int y, int x) c))
             {
-                (int y, int x) c = queue.Dequeue();
-
                 if (visited.Contains(c))
                 {
                     continue;
