@@ -47,20 +47,20 @@ namespace AoC.Day10
 
     public static class Extensions
     {
-        public static Dictionary<char, (char open, int score)> corrupted = new Dictionary<char, (char, int)>
+        private static readonly Dictionary<char, (char open, int score)> corrupted = new()
         {
-            { ')', ('(' , 3) },
-            { ']', ('[' , 57) },
-            { '}', ('{' , 1197) },
-            { '>', ('<' , 25137) }
+            { ')', ('(', 3) },
+            { ']', ('[', 57) },
+            { '}', ('{', 1197) },
+            { '>', ('<', 25137) }
         };
 
-        public static Dictionary<char, int> incomplete = new Dictionary<char, int>
+        private static readonly Dictionary<char, int> incomplete = new()
         {
-            { '(' , 1 },
-            { '[' , 2 },
-            { '{' , 3 },
-            { '<' , 4 }
+            { '(', 1 },
+            { '[', 2 },
+            { '{', 3 },
+            { '<', 4 }
         };
 
         public static IEnumerable<(State, double)> Scores(this string[] input)
