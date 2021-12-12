@@ -25,11 +25,11 @@ namespace AoC.Day11
             Console.WriteLine($"Task 2: {Task2(input)}");
         }
 
-        public static long Task1(int[,] input)
+        public static int Task1(int[,] input)
         {
             var array = (int[,])input.Clone();
 
-            var flashes = 0L;
+            var flashes = 0;
 
             for (int i = 0; i < 100; i++)
             {
@@ -39,7 +39,7 @@ namespace AoC.Day11
             return flashes;
         }
 
-        public static long Task2(int[,] input)
+        public static int Task2(int[,] input)
         {
             var array = (int[,])input.Clone();
 
@@ -58,9 +58,9 @@ namespace AoC.Day11
 
     public static class Extensions
     {
-        public static long Step(this int[,] array)
+        public static int Step(this int[,] array)
         {
-            var flashes = 0L;
+            var flashes = 0;
 
             var queue = new Queue<(int x, int y)>();
 
