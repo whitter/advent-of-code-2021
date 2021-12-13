@@ -4,6 +4,7 @@ using MathNet.Numerics.Statistics;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Drawing;
 using System.IO;
 using System.Linq;
