@@ -44,7 +44,12 @@ fold along x=5".ToMapAndFolds();
         {
             var result = Program.Task2(_input);
 
-            Assert.AreEqual(3509, result);
+            Assert.AreEqual(@"#####
+#   #
+#   #
+#   #
+#####
+", result);
         }
     }
 }

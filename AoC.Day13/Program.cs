@@ -8,6 +8,7 @@ using System.Collections.Immutable;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace AoC.Day13
@@ -20,7 +21,8 @@ namespace AoC.Day13
                 .ToMapAndFolds();
 
             Console.WriteLine($"Task 1: {Task1(input)}");
-            Task2(input);
+            Console.WriteLine($"Task 2:");
+            Console.WriteLine(Task2(input));
         }
 
         public static int Task1(((int, int)[] map, (string, int)[] folds) input)
@@ -30,22 +32,23 @@ namespace AoC.Day13
             return map.Length;
         }
 
-        public static int Task2(((int, int)[] map, (string, int)[] folds) input)
+        public static string Task2(((int, int)[] map, (string, int)[] folds) input)
         {
-            foreach(var fold in input.folds)
+            foreach (var fold in input.folds)
             {
                 input.map = input.map.Fold(fold);
             }
 
-            foreach((int x, int y) in input.map)
+            var map = input.map.ToMap();
+
+            var sb = new StringBuilder();
+
+            for (var y = 0; y < map.GetLength(0); y++)
             {
-                Console.SetCursorPosition(x, y + 1);
-                Console.Write('#');
+                sb.AppendLine(string.Join("", map.SliceRow(y)));
             }
 
-            Console.SetCursorPosition(0, 25);
-
-            return 0;
+            return sb.ToString();
         }
     }    
 
@@ -88,6 +91,29 @@ namespace AoC.Day13
                     .Select(x => x.x < fold.position ? x : (fold.position * 2 - x.x, x.y))
                     .Distinct()
                     .ToArray();
+        }
+
+        public static char[,] ToMap(this (int x, int y)[] map, char character = '#')
+        {
+            var xLength = map.Max(x => x.x) + 1;
+            var yLength = map.Max(x => x.y) + 1;
+
+            var _map = new char[yLength, xLength];
+
+            for (int row = 0; row < _map.GetLength(0); row++)
+            {
+                for (int column = 0; column < _map.GetLength(1); column++)
+                {
+                    _map[row, column] = ' ';
+                }
+            }
+
+            foreach ((int x, int y) in map)
+            {
+                _map[y, x] = character;
+            }
+
+            return _map;
         }
     }
 }

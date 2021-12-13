@@ -131,38 +131,6 @@ namespace AoC.Day4
                     yield return array[row, column];
                 }
             }
-        }
-
-        public static IEnumerable<IEnumerable<T>> SliceRows<T>(this T[,] array)
-        {
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                yield return array.SliceRow(i);
-            }
-        }
-
-        public static IEnumerable<T> SliceRow<T>(this T[,] array, int row)
-        {
-            for (int i = 0; i < array.GetLength(1); i++)
-            {
-                yield return array[row, i];
-            }
-        }
-
-        public static IEnumerable<IEnumerable<T>> SliceColumns<T>(this T[,] array)
-        {
-            for (int i = 0; i < array.GetLength(1); i++)
-            {
-                yield return array.SliceColumn(i);
-            }
-        }
-
-        public static IEnumerable<T> SliceColumn<T>(this T[,] array, int column)
-        {
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                yield return array[i, column];
-            }
-        }
+        }        
     }
 }
