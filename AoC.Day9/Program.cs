@@ -29,7 +29,7 @@ namespace AoC.Day9
         {
             var lowest = input
                 .ToLowest()
-                .Aggregate(0, (int count, (int y, int x)position) => count += input[position.y, position.x] + 1);
+                .Aggregate(0, (int count, (int x, int y)position) => count += input[position.y, position.x] + 1);
 
             return lowest;
         }
@@ -56,34 +56,17 @@ namespace AoC.Day9
             {
                 for(var x = 0; x < array.GetLength(1); x++)
                 {
-                    var neighbours = array.Neighbours(y, x);
+                    var neighbours = array.Neighbours(x, y);
 
-                    if(neighbours.All(((int y, int x)n) => array[n.y, n.x] > array[y,x]))
+                    if(neighbours.All(((int x, int y)n) => array[n.y, n.x] > array[y,x]))
                     {
-                        yield return (y, x);
+                        yield return (x, y);
                     }
                 }
             }
 
             yield break;
-        }
-
-        public static IEnumerable<(int, int)> Neighbours<T>(this T[,] array, int y, int x)
-        {
-            var deltas = new (int, int)[] { (-1, 0), (1, 0), (0, -1), (0, 1) };
-
-            foreach((int dy, int dx) in deltas)
-            {
-                if((y + dy < 0 || y + dy > array.GetLength(0) - 1) || (x + dx < 0 || x + dx > array.GetLength(1) - 1))
-                {
-                    continue;
-                }
-
-                yield return (y + dy, x + dx);
-            }
-
-            yield break;
-        }
+        }        
 
         public static IEnumerable<(int, int)> Basin(this (int, int) point, int[,] array)
         {
@@ -92,10 +75,8 @@ namespace AoC.Day9
 
             queue.Enqueue(point);
 
-            while (queue.Count > 0)
+            while (queue.TryDequeue(out (int x, int y) c))
             {
-                (int y, int x) c = queue.Dequeue();
-
                 if (visited.Contains(c))
                 {
                     continue;
@@ -103,7 +84,7 @@ namespace AoC.Day9
 
                 visited.Add(c);
 
-                foreach ((int y, int x) n in array.Neighbours(c.y, c.x))
+                foreach ((int x, int y) n in array.Neighbours(c.x, c.y))
                 {
                     if (visited.Contains(n))
                         continue;

@@ -58,5 +58,71 @@ namespace AoC.Common
 
             return result;
         }
+
+        public static IEnumerable<(int, int)> Neighbours<T>(this T[,] array, int x, int y)
+        {
+            var deltas = new (int, int)[] { (-1, 0), (1, 0), (0, -1), (0, 1) };
+
+            foreach ((int dy, int dx) in deltas)
+            {
+                if ((y + dy < 0 || y + dy > array.GetLength(0) - 1) || (x + dx < 0 || x + dx > array.GetLength(1) - 1))
+                {
+                    continue;
+                }
+
+                yield return (x + dx, y + dy);
+            }
+
+            yield break;
+        }
+
+        public static IEnumerable<(int, int)> Adjacents<T>(this T[,] array, int x, int y)
+        {
+            var deltas = new (int, int)[] { (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1) };
+
+            foreach ((int dy, int dx) in deltas)
+            {
+                if ((y + dy < 0 || y + dy > array.GetLength(0) - 1) || (x + dx < 0 || x + dx > array.GetLength(1) - 1))
+                {
+                    continue;
+                }
+
+                yield return (x + dx, y + dy);
+            }
+
+            yield break;
+        }
+
+        public static IEnumerable<IEnumerable<T>> SliceRows<T>(this T[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                yield return array.SliceRow(i);
+            }
+        }
+
+        public static IEnumerable<T> SliceRow<T>(this T[,] array, int row)
+        {
+            for (int i = 0; i < array.GetLength(1); i++)
+            {
+                yield return array[row, i];
+            }
+        }
+
+        public static IEnumerable<IEnumerable<T>> SliceColumns<T>(this T[,] array)
+        {
+            for (int i = 0; i < array.GetLength(1); i++)
+            {
+                yield return array.SliceColumn(i);
+            }
+        }
+
+        public static IEnumerable<T> SliceColumn<T>(this T[,] array, int column)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                yield return array[i, column];
+            }
+        }
     }
 }
